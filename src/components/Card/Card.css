@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid gray;
+}
+.left_item {
+  display: flex;
+}
+.dish_img {
+  width: 100px;
+  /* border-radius: 16px !important; */
+  padding-left: 10px;
+  padding-right: 16px;
+}
+.dish_name h4 {
+  color: #4f4f4f;
+}
+.dish_name p {
+  color: gray;
+  font-size: 13px;
+}
