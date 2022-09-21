@@ -3,22 +3,23 @@ import { Grid, Container } from '@mui/material';
 import Menu from '../Menu/Menu';
 import './content.css';
 import Card from '../Card/Card';
-import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 const Content = () => {
   const [cocktails, setCocktails] = useState([]);
   const [cocktailName, setcocktailName] = useState('');
   const [menu, setMenu] = useState('Ordinary Drink');
+  const [loading, setLoading] = useState(true);
   const loadCocktails = async () => {
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a`)
       .then((res) => {
-        // console.log(res.data.drinks);
         setCocktails(res.data.drinks);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -55,55 +56,60 @@ const Content = () => {
                   menu={menu}
                   setMenu={setMenu}
                   setCocktails={setCocktails}
+                  setLoading={setLoading}
                 />
               </div>
             </Grid>
             <Grid item xs={1} />
 
             <Grid item xs={8}>
-              {/* <div className="input">
-                <input
-                  type="text"
-                  onChange={getInput}
-                  value={cocktailName}
-                  placeholder="search your favourite items..."
-                  name="search"
-                />
-                <button type="submit">
-                  <SearchIcon />
-                </button>
-              </div> */}
-
               <FormControl
-                sx={{ m: 1, width: '100%', backgroundColor: 'white' }}
+                sx={{
+                  my: 4,
+                  width: '100%',
+                  backgroundColor: 'white',
+                  boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important',
+                }}
                 variant="outlined"
               >
                 <OutlinedInput
-                  id="outlined-adornment-password"
+                  id="outlined-adornment-weight"
                   onChange={getInput}
                   value={cocktailName}
+                  onKeyDown={loadCocktailsOnSearch}
                   placeholder="search your favourite items..."
                   endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton onClick={loadCocktailsOnSearch} edge="end">
-                        <SearchIcon />
-                      </IconButton>
+                    <InputAdornment
+                      onClick={loadCocktailsOnSearch}
+                      position="end"
+                    >
+                      <SearchIcon />
                     </InputAdornment>
                   }
-                  label="Password"
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    'aria-label': 'weight',
+                  }}
                 />
               </FormControl>
-              {cocktails?.map((item) => {
-                return (
-                  <Card
-                    strDrinkThumb={item.strDrinkThumb}
-                    strDrink={item.strDrink}
-                    strCategory={item.strCategory}
-                    key={item.idDrink}
-                    idDrink={item.idDrink}
-                  />
-                );
-              })}
+
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  {cocktails?.map((item) => {
+                    return (
+                      <Card
+                        strDrinkThumb={item.strDrinkThumb}
+                        strDrink={item.strDrink}
+                        strCategory={item.strCategory}
+                        key={item.idDrink}
+                        idDrink={item.idDrink}
+                      />
+                    );
+                  })}
+                </>
+              )}
             </Grid>
           </Grid>
         </div>
