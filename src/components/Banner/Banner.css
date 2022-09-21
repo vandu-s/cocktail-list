@@ -1,12 +1,45 @@
 .banner {
   width: 100%;
   height: 43.5vh;
-  background: #f3f7f8;
+  background: rgb(31, 31, 56);
+  background: radial-gradient(
+    circle,
+    rgba(31, 31, 56, 1) 0%,
+    rgba(36, 36, 61, 1) 3%,
+    rgba(243, 247, 248, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.text-center {
-  text-align: center !important;
+.cafe {
+  width: 100px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.cafe_info {
+  margin-top: 150px !important;
+  padding-right: 10px;
+  color: white;
+  display: flex;
+}
+.L_icon {
+  font-size: 16px !important;
+}
+.location {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+.banner .cafe_info h1 {
+  color: white !important;
 }
 .banner_img {
-  width: 35%;
-  object-fit: cover;
+  height: 43.5vh;
+}
+.btn {
+  background-color: #2ea233 !important;
 }

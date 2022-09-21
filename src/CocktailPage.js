@@ -12,7 +12,6 @@ const CocktailPage = () => {
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
       .then((res) => {
-        // console.log(res.data.drinks);
         setCocktail(res.data.drinks);
       })
       .catch((err) => {
@@ -22,7 +21,6 @@ const CocktailPage = () => {
   useEffect(() => {
     loadCocktail();
   }, []);
-  console.log('cocktail', cocktail[0]);
   return (
     <Container>
       <div className="wrapper">
@@ -37,6 +35,7 @@ const CocktailPage = () => {
             <article class="drink-info">
               <h1 class="drink-name">{cocktail[0]?.strDrink}</h1>
               <p class="drink-desc">{cocktail[0]?.strInstructions}</p>
+              <br />
               <ul class="drink-ingredients">
                 {cocktail[0]?.strIngredient1 && (
                   <li>{cocktail[0]?.strIngredient1}</li>

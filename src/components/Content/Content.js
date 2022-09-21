@@ -32,6 +32,7 @@ const Content = () => {
       )
       .then((res) => {
         setCocktails(res.data.drinks);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -44,7 +45,6 @@ const Content = () => {
   useEffect(() => {
     loadCocktails();
   }, []);
-  console.log('menu', menu);
   return (
     <>
       <Container fixed>
