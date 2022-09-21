@@ -24,14 +24,15 @@ const CocktailPage = () => {
   return (
     <Container>
       <div className="wrapper">
-        <Grid container spacing={3}>
-          <Grid item sx={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
             <div className="cocktail_img">
-              <img src={cocktail[0]?.strDrinkThumb} alt="" />
+              <img src={cocktail[0]?.strDrinkThumb} alt="drink_img" />
             </div>
           </Grid>
-          {/* <Grid item sx={1} /> */}
-          <Grid item sx={8}>
+          <Grid item xs={1} />
+
+          <Grid item xs={8}>
             <article class="drink-info">
               <h1 class="drink-name">{cocktail[0]?.strDrink}</h1>
               <p class="drink-desc">{cocktail[0]?.strInstructions}</p>

@@ -6,7 +6,7 @@
   align-items: center;
 }
 .cocktail_img {
-  width: 350px;
+  width: 340px;
   border-radius: 20px;
 }
 .cocktail_img img {
@@ -16,4 +16,5 @@
 }
 .drink-desc {
   color: hsl(210, 22%, 49%);
+  word-wrap: break-word;
 }
