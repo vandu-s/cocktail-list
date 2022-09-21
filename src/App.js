@@ -1,11 +1,18 @@
-import './App.css';
-import Banner from './components/Banner/Banner';
-import Content from './components/Content/Content';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import CocktailPage from './CocktailPage';
+
 function App() {
   return (
     <div className="App">
-      <Banner />
-      <Content />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/cocktail/:id" element={<CocktailPage />} />
+        </Routes>
+        {/* <Banner />
+        <Content /> */}
+      </BrowserRouter>
     </div>
   );
 }

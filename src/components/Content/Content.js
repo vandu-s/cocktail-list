@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container } from '@mui/material';
-
 import Menu from '../Menu/Menu';
 import './content.css';
 import Card from '../Card/Card';
@@ -13,7 +12,7 @@ import axios from 'axios';
 const Content = () => {
   const [cocktails, setCocktails] = useState([]);
   const [cocktailName, setcocktailName] = useState('');
-  const [menu, setMenu] = useState('');
+  const [menu, setMenu] = useState('Ordinary Drink');
   const loadCocktails = async () => {
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a`)
@@ -38,7 +37,6 @@ const Content = () => {
       });
   };
 
-  console.log(cocktailName);
   const getInput = (e) => {
     setcocktailName(e.target.value);
   };
@@ -46,7 +44,6 @@ const Content = () => {
     loadCocktails();
   }, []);
   console.log('menu', menu);
-
   return (
     <>
       <Container fixed>
@@ -54,7 +51,11 @@ const Content = () => {
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <div className="left_container">
-                <Menu menu={menu} setMenu={setMenu} />
+                <Menu
+                  menu={menu}
+                  setMenu={setMenu}
+                  setCocktails={setCocktails}
+                />
               </div>
             </Grid>
             <Grid item xs={1} />
@@ -92,13 +93,14 @@ const Content = () => {
                   label="Password"
                 />
               </FormControl>
-              {cocktails.map((item) => {
+              {cocktails?.map((item) => {
                 return (
                   <Card
                     strDrinkThumb={item.strDrinkThumb}
                     strDrink={item.strDrink}
                     strCategory={item.strCategory}
                     key={item.idDrink}
+                    idDrink={item.idDrink}
                   />
                 );
               })}

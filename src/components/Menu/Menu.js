@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './menu.css';
 import axios from 'axios';
 
-const Menu = ({ menu, setMenu }) => {
-  const [menuName, setMenuName] = useState([]);
+const Menu = ({ menu, setMenu, setCocktails }) => {
+  const [menuList, setmenuList] = useState([]);
   const getMenu = async () => {
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`)
       .then((res) => {
-        setMenuName(res.data.drinks);
+        setmenuList(res.data.drinks);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  const loadCocktails = async () => {
+    await axios
+      .get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${menu}`)
+      .then((res) => {
+        setCocktails(res.data.drinks);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getMenu();
   }, []);
@@ -22,8 +33,18 @@ const Menu = ({ menu, setMenu }) => {
     <>
       <div className="menu">
         <h3>Menu</h3>
-        {menuName.map((item) => {
-          return <p onClick={setMenu(item.strCategory)}>{item.strCategory}</p>;
+        {menuList.map((item) => {
+          return (
+            <p
+              key={item.strCategory}
+              onClick={async () => {
+                await setMenu(item.strCategory);
+                loadCocktails();
+              }}
+            >
+              {item.strCategory}
+            </p>
+          );
         })}
       </div>
     </>

@@ -1,0 +1,19 @@
+.wrapper {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cocktail_img {
+  width: 350px;
+  border-radius: 20px;
+}
+.cocktail_img img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.drink-desc {
+  color: hsl(210, 22%, 49%);
+}
