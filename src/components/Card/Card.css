@@ -13,11 +13,14 @@
 .left_item {
   display: flex;
 }
-.dish_img {
+.dish_img_wrapper {
   width: 100px;
-  /* border-radius: 16px !important; */
   padding-left: 10px;
   padding-right: 16px;
+}
+.dish_img {
+  width: 100%;
+  border-radius: 12px !important;
 }
 .dish_name h4 {
   color: #4f4f4f;

@@ -18,6 +18,8 @@ const Menu = ({ menu, setMenu, setCocktails, setLoading }) => {
     await axios
       .get(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${menu}`)
       .then((res) => {
+        setLoading(true);
+
         setCocktails(res.data.drinks);
         setLoading(false);
         console.log(res.data.drinks);
